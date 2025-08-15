@@ -1,0 +1,121 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix ex: <http://example.org/artwork/> .
+
+# Artwork Shape 
+ex:ArtworkShape a sh:NodeShape ;
+    sh:targetClass crm:E22_Man-Made_Object ;
+    sh:property [
+        # Artwork must have at least ONE production event
+        sh:path crm:P108i_was_produced_by ;
+        sh:class crm:E12_Production ;
+        sh:minCount 1 ;
+        sh:message "Artwork must have at least one production event (E12)"
+    ] ,
+    [
+        # Artwork must have at least ONE title
+        sh:path crm:P102_has_title ;
+        sh:class crm:E35_Title ;
+        sh:minCount 1 ;
+        sh:message "Artwork must have at least one title (E35)"
+    ] ,
+    [
+        # Artwork must show visual item
+        sh:path crm:P65_shows_visual_item ;
+        sh:class crm:E36_Visual_Item ;
+        sh:minCount 1 ;
+        sh:message "Artwork must show at least one visual item (E36)"
+    ] ,
+    [
+        # Artwork must have a legal status
+        sh:path crm:P2_has_type ;
+        sh:class crm:E55_Type ;
+        sh:minCount 1 ;
+        sh:message "Artwork must have a legal status (E55)"
+    ] ,
+    [
+        # Artwork must have exactly one condition state
+        sh:path crm:P44_has_condition ;
+        sh:class crm:E3_Condition_State ;
+        sh:minCount 1 ;
+        sh:message "Artwork must have exactly one condition state (E3)"
+    ] .
+
+# Visual Item Shape 
+ex:VisualItemShape a sh:NodeShape ;
+    sh:targetClass crm:E36_Visual_Item ;
+    sh:property [
+        # Visual Item must represent at least one conceptual object
+        sh:path crm:P138_represents ;
+        sh:class crm:E28_Conceptual_Object ;
+        sh:minCount 1 ;
+        sh:message "Visual Item must represent at least one conceptual object (E28)"
+    ] .
+
+# Condition State Shape 
+ex:ConditionStateShape a sh:NodeShape ;
+    sh:targetClass crm:E3_Condition_State ;
+    sh:property [
+        sh:path [ sh:inversePath crm:P34_assessed_condition_of ] ;
+        sh:class crm:E14_Condition_Assessment ;
+        sh:minCount 1 ;
+        sh:message "Condition state must be linked to at least one condition assessment (E14)"
+    ] .
+
+# Condition Assessment Shape 
+ex:ConditionAssessmentShape a sh:NodeShape ;
+    sh:targetClass crm:E14_Condition_Assessment ;
+    sh:property [
+        sh:path crm:P4_has_time-span ;
+        sh:class crm:E52_Time-Span ;
+        sh:minCount 1 ;
+        sh:message "Condition assessment must specify a time-span (E52)"
+    ] ,
+    [
+        sh:path crm:P14_carried_out_by ;
+        sh:or (
+            [ sh:class crm:E21_Person ]
+            [ sh:class crm:E74_Group ]
+        ) ;
+        sh:minCount 1 ;
+        sh:message "Condition assessment must specify who carried it out (E21 or E74)"
+    ] .
+
+# Production Event Shape 
+ex:ProductionEventShape a sh:NodeShape ;
+    sh:targetClass crm:E12_Production ;
+    sh:property [
+        # Must be carried out by at least ONE artist (person or group!!)
+        sh:path crm:P14_carried_out_by ;
+        sh:or (
+            [ sh:class crm:E21_Person ]
+            [ sh:class crm:E74_Group ]
+        ) ;
+        sh:minCount 1 ;
+        sh:message "Production Event must be carried out by at least one artist (E21 or E74)"
+    ] .
+
+# Artist Shape 
+ex:ArtistPersonShape a sh:NodeShape ;
+    sh:targetClass crm:E21_Person ;
+    sh:property [
+        # Artist must have at least one name
+        sh:path crm:P1_is_identified_by ;
+        sh:class crm:E41_Appellation ;
+        sh:minCount 1 ;
+        sh:message "Artist (Person) must have at least one name (E41)"
+    ] .
+
+# Artist Group Shape 
+ex:ArtistGroupShape a sh:NodeShape ;
+    sh:targetClass crm:E74_Group ;
+    sh:property [
+        # Artist group must have at least one name
+        sh:path crm:P1_is_identified_by ;
+        sh:class crm:E41_Appellation ;
+        sh:minCount 1 ;
+        sh:message "Artist (Group) must have at least one name (E41)"
+    ] .

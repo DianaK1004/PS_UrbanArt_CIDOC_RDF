@@ -1,0 +1,246 @@
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix ex: <http://example.org/artwork/> .
+@prefix aat: <http://vocab.getty.edu/aat/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+# ARTWORK 
+ex:SexArbeitIstArbeit a crm:E22_Man-Made_Object ;
+crm:P2_has_type 
+        aat:300410270 ,  # Graffiti
+        aat:300393199 ,  # Commissioned Artwork
+        aat:300444972 ;  # Publicly Accessible
+    crm:P102_has_title [
+        a crm:E35_Title ;
+        crm:P190_has_symbolic_content "Sexarbeit ist Arbeit"@de ;
+        crm:P2_has_type aat:300417199  # descriptive title
+    ] ;
+        crm:P129_is_about 
+            ex:RightsMovement ,
+            ex:SexWorkDecriminalisation ,
+            ex:InternationalSexWorkersRightsDay ;
+
+    crm:P65_shows_visual_item ex:MuralVisual_SexArbeit ;
+    crm:P108i_was_produced_by ex:Production_SexArbeit ;
+    crm:P44_has_condition ex:ConditionState_Faded_SexArbeit ;
+    crm:P34i_was_assessed_by ex:ConditionAssessment_SexArbeit ;
+    crm:P67i_is_referred_to_by ex:Reception_SexArbeit .
+
+# Visual elements 
+ex:MuralVisual_SexArbeit a crm:E36_Visual_Item ;
+    crm:P2_has_type aat:300248231 ; # Visual Description
+    crm:P138_represents 
+        ex:Rainbow ,
+        ex:Umbrella , 
+        ex:DemonstrationSigns ;
+    crm:P45_consists_of ex:RedColor , ex:BlueColor , ex:OrangeColor , ex:BlackColor ;
+    crm:P137_exemplifies aat:300256621 ; # Political Art
+    crm:P165_incorporates ex:Inscription_Main , ex:Inscription_Munca , ex:Inscription_Respeto ,
+                          ex:Inscription_Aszexmunka , ex:Inscription_SXAInfo .
+
+# Production event
+ex:Production_SexArbeit a crm:E12_Production ;
+    crm:P2_has_type aat:300054713 ; # Production
+    crm:P14_carried_out_by ex:UnknownArtist ;
+    crm:P4_has_time-span [
+        a crm:E52_Time-Span ; # Some time from 2021 to 2023
+        crm:P82a_begin_of_the_begin "2021-01-01"^^xsd:date ;
+        crm:P82b_end_of_the_end "2023-12-31"^^xsd:date
+    ] ;
+    crm:P7_took_place_at ex:Postgarage_Graz ;
+    crm:P126_employed aat:300391376 ; # Material Spray Paint
+    crm:P32_used_general_technique [
+        a crm:E55_Type ;
+        crm:P2_has_type aat:300053816 ;   # Technique spray painting
+        crm:P1_is_identified_by [
+            a crm:E41_Linguistic_Appellation ;
+            crm:P190_has_symbolic_content "Spray painting technique with layered colors and lettering"@en
+        ]
+    ] .
+
+# Condition
+ex:ConditionState_Faded_SexArbeit a crm:E3_Condition_State ;
+    crm:P2_has_type ex:FadedCondition ;
+    crm:P3_has_note "Colors slightly faded but inscriptions remain legible."@en .
+
+# Condition detailed
+ex:ConditionAssessment_SexArbeit a crm:E14_Condition_Assessment ;
+    crm:P4_has_time-span [
+        a crm:E52_Time-Span ;
+        crm:P82a_begin_of_the_begin "2025-03-03"^^xsd:date
+    ] ;
+    crm:P14_carried_out_by ex:AnonymousObserver ;
+    crm:P34_assessed_condition_of ex:ConditionState_Faded_SexArbeit .
+
+# Location 
+ex:Postgarage_Graz a crm:E53_Place ;
+    crm:P1_is_identified_by [
+        a crm:E41_Linguistic_Appellation ;
+        crm:P190_has_symbolic_content "Postgarage Night Club, Graz 8020, Austria"@en
+    ] ;
+    geo:lat "47.06623539988908"^^xsd:float ;
+    geo:long "15.428565251527212"^^xsd:float ;
+    crm:P2_has_type aat:300444972 ;
+    crm:P3_has_note "Location is a queer-friendly night club; placement enhances the artwork's message about rights and inclusivity."@en .
+
+# People
+ex:UnknownArtist a crm:E21_Person ;
+    crm:P2_has_type aat:300435316 ;  # Unknown People
+    crm:P1_is_identified_by [
+        a crm:E41_Appellation ;
+        crm:P190_has_symbolic_content "Unknown Artist"@en
+    ] .
+
+ex:AnonymousObserver a crm:E21_Person ;
+    crm:P1_is_identified_by [ a crm:E41_Appellation ; rdf:value "Observer" ] .
+
+# Inscriptions
+ex:Inscription_Main a crm:E34_Inscription ;
+    crm:P2_has_type aat:300255231 ; # Lettering
+    crm:P3_has_note [ a crm:E62_String ; crm:P190_has_symbolic_content "Sexarbeit ist Arbeit" ] ;
+    crm:P72_has_language [
+        a crm:E56_Language ;
+        crm:P1_is_identified_by [
+            a crm:E41_Linguistic_Appellation ;
+            crm:P190_has_symbolic_content "German"
+        ]
+    ] .
+
+ex:Inscription_Munca a crm:E34_Inscription ;
+    crm:P2_has_type aat:300255231 ;
+    crm:P3_has_note [ a crm:E62_String ; crm:P190_has_symbolic_content "Munca e munca" ] ;
+    crm:P72_has_language [
+        a crm:E56_Language ;
+        crm:P1_is_identified_by [
+            a crm:E33_E41_Linguistic_Appellation ;
+            crm:P190_has_symbolic_content "Romanian"@en
+        ]
+    ] .
+
+ex:Inscription_Respeto a crm:E34_Inscription ;
+    crm:P2_has_type aat:300255231 ;
+    crm:P3_has_note [ a crm:E62_String ; crm:P190_has_symbolic_content "Respeto total al trabajo sexual" ] ;
+    crm:P72_has_language [
+        a crm:E56_Language ;
+        crm:P1_is_identified_by [
+            a crm:E33_E41_Linguistic_Appellation ;
+            crm:P190_has_symbolic_content "Spanish"@en
+        ]
+    ] .
+
+ex:Inscription_Aszexmunka a crm:E34_Inscription ;
+    crm:P2_has_type aat:300255231 ;
+    crm:P3_has_note [ a crm:E62_String ; crm:P190_has_symbolic_content "Aszexmunka iz munka" ] ;
+    crm:P72_has_language [
+        a crm:E56_Language ;
+        crm:P1_is_identified_by [
+            a crm:E33_E41_Linguistic_Appellation ;
+            crm:P190_has_symbolic_content "Hungarian"@en
+        ]
+    ] .
+
+ex:Inscription_SXAInfo a crm:E34_Inscription ;
+    crm:P2_has_type aat:300255231 ;
+    crm:P3_has_note [ a crm:E62_String ; crm:P190_has_symbolic_content "SXA-INFO" ] ;
+    crm:P72_has_language [
+        a crm:E56_Language ;
+        crm:P1_is_identified_by [
+            a crm:E33_E41_Linguistic_Appellation ;
+            crm:P190_has_symbolic_content "Latin alphabet"@en
+        ]
+    ] ;
+    crm:P67_refers_to ex:SXAInfo_Project .
+
+
+# Dominant Colors
+ex:RedColor a crm:E55_Type ;
+    crm:P2_has_type aat:300311118 ; # Red
+    crm:P1_is_identified_by [ a crm:E33_E41_Linguistic_Appellation ; crm:P190_has_symbolic_content "Red"@en ] .
+
+ex:BlueColor a crm:E55_Type ;
+    crm:P2_has_type aat:300311116 ; # Blue
+    crm:P1_is_identified_by [ a crm:E33_E41_Linguistic_Appellation ; crm:P190_has_symbolic_content "Blue"@en ] .
+
+ex:OrangeColor a crm:E55_Type ;
+    crm:P2_has_type aat:300311124 ; # Orange
+    crm:P1_is_identified_by [ a crm:E33_E41_Linguistic_Appellation ; crm:P190_has_symbolic_content "Orange"@en ] .
+
+ex:BlackColor a crm:E55_Type ;
+    crm:P2_has_type aat:300130920 ; # Black
+    crm:P1_is_identified_by [ a crm:E33_E41_Linguistic_Appellation ; crm:P190_has_symbolic_content "Black"@en ] .
+
+# Reception (based on an existing flyer)
+ex:Reception_SexArbeit a crm:E7_Activity ;
+    crm:P2_has_type ex:PublicReception ;
+    crm:P4_has_time-span [
+        a crm:E52_Time-Span ;
+        crm:P82a_begin_of_the_begin "2023-03-03"^^xsd:date ;
+        crm:P82b_end_of_the_end   "2023-03-31"^^xsd:date
+    ] ;
+    crm:P129_is_about ex:SexArbeitIstArbeit ;        # reception is about the artwork
+    crm:P67_refers_to ex:Flyer_SexArbeitReception ;  
+    crm:P3_has_note "Artwork discussed and promoted in a March 2023 flyer advocating for sex workers' rights."@en .
+
+# Flyer as a real-world document that documents the artwork
+ex:Flyer_SexArbeitReception
+    a crm:E31_Document, crm:E33_Linguistic_Object, crm:E73_Information_Object ;
+    crm:P2_has_type aat:300026672 ;                
+    crm:P1_is_identified_by [
+        a crm:E41_Appellation ;
+        rdf:value "Sex Workers' Rights Day Flyer"@en
+    ] ;
+    crm:P190_has_symbolic_content "Printed flyer distributed during March 2023 event."@en ;
+    crm:P70_documents ex:SexArbeitIstArbeit ;
+    rdfs:label "SexArbeitIstArbeit — Advocacy Flyer (Mar 2023)"@en .
+
+
+ex:FadedCondition a crm:E55_Type ;
+    rdfs:label "Faded Condition"@en ;
+    skos:note "Colors are faded but inscriptions are legible."@en .
+
+ex:PublicReception a crm:E55_Type ;
+    rdfs:label "Public Reception"@en ;
+    skos:note "Generic type for public or media reception events."@en .
+
+# Conceptual objects
+ex:SXAInfo_Project a crm:E28_Conceptual_Object ;
+    rdfs:label "SXA-Info Project"@en ;
+    skos:note "SXA-Info is a special counseling service for sex workers in Austria."@en .
+
+ex:Rainbow a crm:E28_Conceptual_Object ; 
+    rdfs:label "Rainbow Symbol"@en ;
+    skos:broader <http://www.wikidata.org/entity/Q1052> .
+
+ex:Umbrella a crm:E28_Conceptual_Object ; 
+    rdfs:label "Red Umbrella (Sex Workers' Movement Symbol)"@en .
+
+ex:DemonstrationSigns a crm:E28_Conceptual_Object ; 
+    rdfs:label "Demonstration Signs"@en .
+
+ex:RightsMovement a crm:E28_Conceptual_Object ; 
+    rdfs:label "Fight for Sex Workers' Rights"@en ;
+    skos:broader <http://www.wikidata.org/entity/Q118906526> .
+
+ex:SexWorkDecriminalisation a crm:E28_Conceptual_Object ; 
+    rdfs:label "Decriminalisation of Sex Work"@en .
+
+ex:InternationalSexWorkersRightsDay a crm:E28_Conceptual_Object ; 
+    rdfs:label "3rd March – International Sex Workers' Rights Day"@en .
+
+# AAT declarations for readability and validation
+aat:300410270 a crm:E55_Type ; rdfs:label "Graffiti"@en .
+aat:300393199 a crm:E55_Type ; rdfs:label "Commissioned Artwork"@en .
+aat:300417199 a crm:E55_Type ; rdfs:label "Descriptive Title"@en .
+aat:300444972 a crm:E55_Type ; rdfs:label "Publicly Accessible"@en .
+aat:300248231 a crm:E55_Type ; rdfs:label "Visual Depiction"@en .
+aat:300256621 a crm:E55_Type ; rdfs:label "Political Art"@en .
+aat:300054713 a crm:E55_Type ; rdfs:label "Production Event"@en .
+aat:300053816 a crm:E55_Type ; rdfs:label "Spray Painting Technique"@en .
+aat:300391376 a crm:E57_Material ; rdfs:label "Spray Paint Material"@en .
+aat:300255231 a crm:E55_Type ; rdfs:label "Lettering"@en .
+aat:300311118 a crm:E55_Type ; rdfs:label "Red"@en .
+aat:300311116 a crm:E55_Type ; rdfs:label "Blue"@en .
+aat:300311124 a crm:E55_Type ; rdfs:label "Orange"@en .
+aat:300130920 a crm:E55_Type ; rdfs:label "Black"@en .

@@ -1,0 +1,275 @@
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix crmsci: <http://www.cidoc-crm.org/extensions/crmsci/> .
+@prefix ex: <http://example.org/artwork/> .
+@prefix aat: <http://vocab.getty.edu/aat/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+# ARTWORK 
+ex:Unknown_Graffiti a crm:E22_Man-Made_Object ;
+    crm:P2_has_type 
+        aat:300410270 ,  # Graffiti
+        aat:300444972 ;  # Publicly Accessible
+    crm:P102_has_title [
+        a crm:E35_Title ;
+        crm:P190_has_symbolic_content "Stylized Graffiti"@en ;
+        crm:P2_has_type aat:300417199  # Descriptive Title
+    ] ;
+    # Dimensions (approximated for the test)
+    crm:P43_has_dimension [
+        a crm:E54_Dimension ;
+        crm:P2_has_type aat:300055647 ;            
+        crm:P90_has_value "2.0"^^xsd:decimal ;
+        crm:P91_has_unit aat:300379099             
+    ] ;
+    crm:P43_has_dimension [
+        a crm:E54_Dimension ;
+        crm:P2_has_type aat:300055644 ;            
+        crm:P90_has_value "5.0"^^xsd:decimal ;
+        crm:P91_has_unit aat:300379099
+    ] ;
+    crm:P129_is_about 
+        ex:PublicExpression , 
+        ex:SocialProtest , 
+        ex:EmotionVulnerability ;
+
+    crm:P65_shows_visual_item ex:MuralVisual_UnknownGraffiti ;
+    crm:P108i_was_produced_by ex:Production_UnknownGraffiti ;
+    crm:P44_has_condition ex:ConditionState_Good ;
+    crm:P34i_was_assessed_by ex:ConditionAssessment_UnknownGraffiti .
+
+# Visual elements 
+ex:MuralVisual_UnknownGraffiti a crm:E36_Visual_Item ;
+    crm:P2_has_type aat:300248231 ; # Visual Description
+    crm:P138_represents 
+        ex:Clouds , 
+        ex:Person , 
+        ex:Heart ;
+    crm:P45_consists_of ex:PinkColor , ex:YellowColor , ex:BlueColor , ex:WhiteColor ;
+    crm:P137_exemplifies aat:300256621 ; # Political Art
+    crm:P165_incorporates ex:Tag_Yaratun , ex:Slogan_NoGods , ex:ArabicText_Breathe .
+
+# Production event
+ex:Production_UnknownGraffiti a crm:E12_Production ;
+    crm:P2_has_type aat:300054713 ; # Production
+    crm:P14_carried_out_by ex:UnknownArtist ;
+    crm:P4_has_time-span [
+        a crm:E52_Time-Span ;
+        crm:P82a_begin_of_the_begin "2025-01-01"^^xsd:date ;
+        crm:P82b_end_of_the_end "2025-12-31"^^xsd:date
+    ] ;
+    crm:P7_took_place_at ex:Graz_LendDistrict ;
+    crm:P126_employed aat:300015058 ; # Acrylic paints
+    crm:P32_used_general_technique [
+        a crm:E55_Type ;
+        crm:P2_has_type aat:300182574 ;   # Acrylic painting
+        crm:P1_is_identified_by [
+            a crm:E41_Linguistic_Appellation ;
+            crm:P190_has_symbolic_content "Looks like a layered technique using acrylic paint and markers"@en
+        ]
+    ] .
+
+# Condition
+ex:ConditionState_Good a crm:E3_Condition_State ;
+    crm:P2_has_type ex:GoodCondition ;
+    crm:P3_has_note "Artwork's colors are fading, some damage to the wall is visible, but overall condition is good"@en .
+
+# Condition detailed
+ex:ConditionAssessment_UnknownGraffiti a crm:E14_Condition_Assessment ;
+    crm:P4_has_time-span [
+        a crm:E52_Time-Span ;
+        crm:P82a_begin_of_the_begin "2025-04-01"^^xsd:date
+    ] ;
+    crm:P14_carried_out_by ex:AnonymousObserver ;
+    crm:P34_assessed_condition_of ex:ConditionState_Good .
+
+# Observations (CRMsci)
+ex:Observation_April2025 a crmsci:S4_Observation ;
+    crm:P14_carried_out_by ex:AnonymousObserver ;
+    crm:P4_has_time-span [
+        a crm:E52_Time-Span ;
+        crm:P82a_begin_of_the_begin "2025-04-16"^^xsd:date ;
+        crm:P82b_end_of_the_end "2025-04-16"^^xsd:date
+    ] ;
+    crmsci:O8_observed ex:Unknown_Graffiti ;
+    crm:P3_has_note "Graffiti is still visible in April 2025."@en .
+
+ex:Observation_June2025 a crmsci:S4_Observation ;
+    crm:P14_carried_out_by ex:AnonymousObserver ;
+    crm:P4_has_time-span [
+        a crm:E52_Time-Span ;
+        crm:P82a_begin_of_the_begin "2025-06-10"^^xsd:date ;
+        crm:P82b_end_of_the_end "2025-06-10"^^xsd:date
+    ] ;
+    crmsci:O8_observed ex:Unknown_Graffiti ;
+    crm:P3_has_note "Graffiti no longer visible, mural overpainted."@en .
+
+# Destruction event
+ex:Destruction_UnknownGraffiti a crm:E6_Destruction ;
+    crm:P13_destroyed ex:Unknown_Graffiti ;
+    crm:P4_has_time-span [
+        a crm:E52_Time-Span ;
+        crm:P82a_begin_of_the_begin "2025-04-16"^^xsd:date ;
+        crm:P82b_end_of_the_end "2025-06-30"^^xsd:date
+    ] ;
+    crm:P7_took_place_at ex:Graz_LendDistrict ;
+    crm:P14_carried_out_by ex:OverpaintingArtist .
+
+# Overpainting viewed as one activity that consists of Destruction + Production
+ex:Overpainting_Activity a crm:E7_Activity ;
+    crm:P14_carried_out_by ex:OverpaintingArtist ;
+    crm:P7_took_place_at ex:Graz_LendDistrict ;
+    crm:P4_has_time-span [
+        a crm:E52_Time-Span ;
+        crm:P82a_begin_of_the_begin "2025-04-16"^^xsd:date ;
+        crm:P82b_end_of_the_end "2025-06-30"^^xsd:date
+    ] ;
+    crm:P9_consists_of ex:Destruction_UnknownGraffiti , ex:Production_OverpaintingGraffiti .
+
+# Production event for the new overpainting
+ex:Production_OverpaintingGraffiti a crm:E12_Production ;
+    crm:P108_has_produced ex:Overpainting_Graffiti ;
+    crm:P14_carried_out_by ex:OverpaintingArtist ;
+    crm:P7_took_place_at ex:Graz_LendDistrict ;
+    crm:P4_has_time-span [
+        a crm:E52_Time-Span ;
+        crm:P82a_begin_of_the_begin "2025-04-16"^^xsd:date ;
+        crm:P82b_end_of_the_end "2025-06-30"^^xsd:date
+    ] .
+
+# Minimal encoding of the overpainting title 
+ex:Overpainting_Title a crm:E35_Title ;
+    crm:P190_has_symbolic_content "drowning in - several addictions"@en ;
+    crm:P2_has_type aat:300417209 . # Official title
+
+# Link the title to the production event 
+ex:Production_OverpaintingGraffiti crm:P102_has_title ex:Overpainting_Title .
+    crm:P7i_witnessed ex:Production_OverpaintingGraffiti .
+
+# Location 
+ex:Graz_LendDistrict a crm:E53_Place ;
+    crm:P1_is_identified_by [
+        a crm:E41_Linguistic_Appellation ;
+        crm:P190_has_symbolic_content "Graz-Lend district, Austria"@en
+    ] ;
+    geo:lat "47.07269274957093"^^xsd:float ;
+    geo:long "15.413790114855638"^^xsd:float ;
+    crm:P2_has_type aat:300444972 ;
+    crm:P3_has_note "Location is on a side of a seemingly abandoned industrial building."@en .
+
+# People
+ex:UnknownArtist a crm:E21_Person ;
+    crm:P2_has_type aat:300435316 ;  # Unknown People
+    crm:P1_is_identified_by [
+        a crm:E41_Appellation ;
+        crm:P190_has_symbolic_content "Unknown Artist"@en
+    ] .
+
+ex:AnonymousObserver a crm:E21_Person ;
+    crm:P1_is_identified_by [ a crm:E41_Appellation ; rdf:value "Observer" ] .
+
+ex:OverpaintingArtist a crm:E21_Person ;
+    crm:P1_is_identified_by [ a crm:E41_Appellation ; rdf:value "David Leiner" ] .
+
+# Inscriptions 
+ex:Tag_Yaratun a crm:E34_Inscription ;
+    crm:P2_has_type aat:300255231 ;   # Lettering
+    crm:P3_has_note [ a crm:E62_String ;
+        crm:P190_has_symbolic_content "YARATUN"
+    ] ;
+    crm:P129_is_about ex:Yaratun_Concept .
+
+ex:Slogan_NoGods a crm:E34_Inscription ;
+    crm:P2_has_type aat:300255231 ; # Lettering
+    crm:P3_has_note [ a crm:E62_String ;
+        crm:P190_has_symbolic_content "NO GODS NO MASTERS"
+    ] ;
+    crm:P129_is_about ex:NoGodsNoMasters_Concept .
+
+ex:ArabicText_Breathe a crm:E34_Inscription ;
+    crm:P2_has_type aat:300400697 ; # Arabic script (type)
+    crm:P3_has_note [ a crm:E62_String ;
+        crm:P190_has_symbolic_content "تنفسوا"
+    ] ;
+    crm:P129_is_about ex:Breathe_Concept .
+
+# Concepts referenced by the inscriptions 
+ex:Yaratun_Concept a crm:E28_Conceptual_Object ;
+    rdfs:label "Graffiti tag/signature: 'YARATUN'"@en ;
+    skos:note "Interpreted as a marker of authorship or identity (individual or crew), associating the work with a name/alias."@en .
+
+ex:NoGodsNoMasters_Concept a crm:E28_Conceptual_Object ;
+    rdfs:label "Anti‑authoritarian motto: 'No gods, no masters'"@en ;
+    skos:note "A slogan associated with anarchist and labor movements; signals resistance to hierarchical control and an assertion of autonomy."@en .
+
+ex:Breathe_Concept a crm:E28_Conceptual_Object ;
+    rdfs:label "Call to 'Breathe!'"@en ;
+    skos:note "A prompt to pause and endure; in protest or stress contexts, can signal resistance to forms of suffocation—literal, social, or psychological."@en .
+
+# Dominant Colors
+ex:PinkColor a crm:E55_Type ;
+    crm:P2_has_type aat:300126047 ;
+    crm:P1_is_identified_by [ a crm:E41_Linguistic_Appellation ; crm:P190_has_symbolic_content "Pink"@en ] .
+
+ex:YellowColor a crm:E55_Type ;
+    crm:P2_has_type aat:300127809 ;
+    crm:P1_is_identified_by [ a crm:E41_Linguistic_Appellation ; crm:P190_has_symbolic_content "Yellow"@en ] .
+
+ex:BlueColor a crm:E55_Type ;
+    crm:P2_has_type aat:300311116 ;
+    crm:P1_is_identified_by [ a crm:E41_Linguistic_Appellation ; crm:P190_has_symbolic_content "Blue"@en ] .
+
+
+# Conceptual objects
+ex:UrbanExpression a crm:E28_Conceptual_Object ;
+    rdfs:label "Urban Expression"@en ;
+    skos:note "Themes of freedom, resistance, and identity through surreal urban imagery"@en ; 
+    skos:broader <http://www.wikidata.org/entity/Q25319703> .
+
+ex:EmotionVulnerability a crm:E28_Conceptual_Object ;
+    rdfs:label "Emotional Vulnerability"@en ;
+    skos:note "The openness to reveal emotions or heart as an act of courage, empathy, and authenticity, even in the face of adversity."@en ;
+    skos:broader <http://www.wikidata.org/entity/Q12313331> .
+
+ex:SocialProtest a crm:E28_Conceptual_Object ;
+    rdfs:label "Social Protest"@en ;
+    skos:note  "Social protest is a form of political expression that seeks to bring about social or political change by influencing the knowledge, attitudes, and behaviors of the public."@en ;
+    skos:broader <http://www.wikidata.org/entity/Q120644836> .
+
+ex:Clouds a crm:E28_Conceptual_Object ;
+    rdfs:label "Graffiti Style"@en .
+ex:Person a crm:E28_Conceptual_Object ;
+    rdfs:label "Person"@en .
+ex:Heart a crm:E28_Conceptual_Object ;
+    rdfs:label "Heart"@en .
+
+ex:Paint a crm:E57_Material ;
+    rdfs:label "Paint"@en .
+ex:GoodCondition a crm:E55_Type ;
+    rdfs:label "Good"@en .
+ex:PublicProperty a crm:E55_Type ;
+    rdfs:label "Public Property"@en .
+ex:PubliclyAccessible a crm:E55_Type ;
+    rdfs:label "Publicly Accessible"@en .
+
+# AAT DECLARATIONS
+aat:300410270 a crm:E55_Type ; rdfs:label "Graffiti"@en .
+aat:300444972 a crm:E55_Type ; rdfs:label "Publicly Accessible"@en .
+aat:300417199 a crm:E55_Type ; rdfs:label "Descriptive Title"@en .
+aat:300417209 a crm:E55_Type ; rdfs:label "Official Title"@en .   
+aat:300055647 a crm:E55_Type ; rdfs:label "Width"@en .
+aat:300055644 a crm:E55_Type ; rdfs:label "Height"@en .
+aat:300379099 a crm:E55_Type ; rdfs:label "Meters"@en .
+aat:300248231 a crm:E55_Type ; rdfs:label "Visual Depiction"@en .
+aat:300256621 a crm:E55_Type ; rdfs:label "Political Art"@en .
+aat:300054713 a crm:E55_Type ; rdfs:label "Production Event"@en .
+aat:300015058 a crm:E57_Material ; rdfs:label "Acrylic Paint"@en .
+aat:300182574 a crm:E55_Type ; rdfs:label "Acrylic Painting"@en .
+aat:300255231 a crm:E55_Type ; rdfs:label "Lettering"@en .
+aat:300400697 a crm:E55_Type ; rdfs:label "Arabic script (type)"@en .
+aat:300126047 a crm:E55_Type ; rdfs:label "Pink (color)"@en .
+aat:300127809 a crm:E55_Type ; rdfs:label "Yellow (color)"@en .
+aat:300311116 a crm:E55_Type ; rdfs:label "Blue (color)"@en .
+aat:300435316 a crm:E55_Type ; rdfs:label "Unknown people"@en .

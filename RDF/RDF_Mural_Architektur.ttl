@@ -1,0 +1,256 @@
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix ex: <http://example.org/artwork/> .
+@prefix aat: <http://vocab.getty.edu/aat/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Artwork
+ex:Architektur a crm:E22_Man-Made_Object ;
+    crm:P2_has_type aat:300033644 , # mural type
+                    aat:300444972 ; 
+
+    crm:P102_has_title [
+        a crm:E35_Title ;
+        crm:P190_has_symbolic_content "Architektur"@de ;
+        crm:P2_has_type aat:300417209 # official title
+    ] ;
+    crm:P102_has_title [
+        a crm:E35_Title ;
+        crm:P190_has_symbolic_content "The Architecture Mural"@en ;
+        crm:P2_has_type ex:AlternativeTitle
+    ] ;
+
+    # Dimensions
+    crm:P43_has_dimension [
+        a crm:E54_Dimension ;
+        crm:P2_has_type aat:300055647 ; # height
+        crm:P90_has_value "3.0"^^xsd:decimal ;
+        crm:P91_has_unit aat:300379098 # metre
+    ] ;
+    crm:P43_has_dimension [
+        a crm:E54_Dimension ;
+        crm:P2_has_type aat:300055644 ; # width
+        crm:P90_has_value "6.0"^^xsd:decimal ;
+        crm:P91_has_unit aat:300379098 # metre
+    ] ;
+    crm:P129_is_about
+        ex:Reimagining ,
+        ex:ClassicalArt ,
+        ex:ModernArt ,
+        ex:Tribute ;
+
+    crm:P15_was_influenced_by ex:Waldlandschaft_DenisVanAlsloot ;
+    crm:P65_shows_visual_item ex:MuralVisual_Architektur ;
+    crm:P108i_was_produced_by ex:Production_Architektur ;
+    crm:P44_has_condition ex:ConditionState_Good ;
+    crm:P34i_was_assessed_by ex:ConditionAssessment_Architektur .
+
+# Visual Elements
+ex:MuralVisual_Architektur a crm:E36_Visual_Item ;
+    crm:P2_has_type aat:300248231 ; # Visual Description
+    crm:P138_represents 
+        ex:Forest , 
+        ex:Monastery , 
+        ex:Graz , 
+        ex:Symmetry ;
+    crm:P45_consists_of ex:BlueColor , ex:PinkColor , ex:BrownColor , ex:GreenColor ;
+    crm:P137_exemplifies ex:ModernStyle .
+
+# Production event
+ex:Production_Architektur a crm:E12_Production ;
+    crm:P2_has_type aat:300054713 ; # Production 
+    crm:P14_carried_out_by ex:Malditas_Ternura ;
+    crm:P4_has_time-span [
+        a crm:E52_Time-Span ;
+        crm:P82a_begin_of_the_begin "2025-04-01"^^xsd:date ;
+        crm:P82b_end_of_the_end "2025-04-30"^^xsd:date ;
+    ] ;
+    crm:P7_took_place_at ex:Graz_LendDistrict ;
+    crm:P126_employed aat:300015058 ; # Acrylic paints
+    crm:P32_used_general_technique [
+        a crm:E55_Type ;
+        crm:P2_has_type aat:300182574 ;   # Acrylic painting
+        crm:P1_is_identified_by [
+            a crm:E41_Linguistic_Appellation ;
+            crm:P190_has_symbolic_content "Looks like brushes and rollers were used"@en
+        ]
+    ] .
+
+# Condition
+ex:ConditionState_Good a crm:E3_Condition_State ;
+    crm:P2_has_type ex:GoodCondition ; 
+    crm:P3_has_note "Taken a photo in April 2025. Good state."@en .
+
+# Condition detailed
+ex:ConditionAssessment_Architektur a crm:E14_Condition_Assessment ;
+    crm:P4_has_time-span [
+        a crm:E52_Time-Span ;
+        crm:P82a_begin_of_the_begin "2025-04-01"^^xsd:date ;
+        crm:P82b_end_of_the_end "2025-04-30"^^xsd:date
+    ] ;
+    crm:P14_carried_out_by ex:AnonymousObserver ;
+    crm:P34_assessed_condition_of ex:ConditionState_Good .
+
+# Reception event (based on existing documents)
+ex:Reception_Architektur a crm:E7_Activity ;
+    crm:P2_has_type ex:PublicReception ;
+    crm:P129_is_about ex:Architektur ;                 
+    crm:P67_refers_to 
+        ex:Architektur_Website ,
+        ex:Architektur_NewsArticle1 ,
+        ex:Architektur_Article2 ;                      
+    crm:P3_has_note "Artwork discussed on official website and in local newspapers."@en .
+
+# Website 
+ex:Architektur_Website 
+    a crm:E31_Document, crm:E33_Linguistic_Object ;
+    crm:P2_has_type aat:300264578 ;                    
+    crm:P1_is_identified_by [
+        a crm:E42_Identifier ;
+        crm:P2_has_type aat:300404630 ;                
+        crm:P190_has_symbolic_content 
+            "https://www.kaiserschild-stiftung.at/aktuelles-der-kaiserschild-stiftung/news-detail-seite/kaiserschild-walls-of-vision-in-graz"^^xsd:anyURI
+    ] ;
+    crm:P70_documents ex:Architektur ;                 
+    rdfs:label "Official Architektur Website"@en .
+
+# Newspaper articles 
+ex:Architektur_NewsArticle1 
+    a crm:E31_Document, crm:E33_Linguistic_Object ;
+    crm:P2_has_type aat:300264578 ;                   
+    crm:P1_is_identified_by [
+        a crm:E42_Identifier ;
+        crm:P2_has_type aat:300404630 ;               
+        crm:P190_has_symbolic_content 
+            "https://www.kleinezeitung.at/steiermark/graz/19022835/kaiserschild-walls-of-vision"^^xsd:anyURI
+    ] ;
+    crm:P70_documents ex:Architektur ;
+    rdfs:label "Local Newspaper Coverage 1"@en .
+
+ex:Architektur_Article2 
+    a crm:E31_Document, crm:E33_Linguistic_Object ;
+    crm:P2_has_type aat:300264578 ;                     
+    crm:P1_is_identified_by [
+        a crm:E42_Identifier ;
+        crm:P2_has_type aat:300404630 ;               
+        crm:P190_has_symbolic_content 
+            "https://www.museum-joanneum.at/street-art-trifft-klassische-kunst-kaiserschild-walls-of-vision-bringt-neuinterpretation-alter-meister-nach-graz"^^xsd:anyURI
+    ] ;
+    crm:P70_documents ex:Architektur ;
+    rdfs:label "Local Newspaper Coverage 2"@en .
+
+# Location
+ex:Graz_LendDistrict a crm:E53_Place ;
+    crm:P1_is_identified_by [
+        a crm:E41_Linguistic_Appellation ;
+        crm:P190_has_symbolic_content "Graz-Lend district, Austria"@en
+    ] ;
+    geo:lat "47.0707"^^xsd:float ;
+    geo:long "15.4395"^^xsd:float ;
+    crm:P2_has_type aat:300444972 ;
+    crm:P3_has_note "Located on a blind wall of a residential building" .
+
+# People
+ex:Malditas_Ternura a crm:E74_Group ;
+  crm:P1_is_identified_by [
+    a crm:E41_Appellation ;
+    crm:P190_has_symbolic_content "Malditas Ternura"@en
+  ] ;
+  crm:P107_has_current_or_former_member ex:Sofia_Mele , ex:Sisa_Soldati .
+
+ex:Sofia_Mele a crm:E21_Person ;
+  crm:P1_is_identified_by [
+    a crm:E41_Appellation ;
+    crm:P190_has_symbolic_content "Sofia Mele"@en
+  ] ;
+  crm:P107i_is_current_or_former_member_of ex:Malditas_Ternura .
+
+ex:Sisa_Soldati a crm:E21_Person ;
+  crm:P1_is_identified_by [
+    a crm:E41_Appellation ;
+    crm:P190_has_symbolic_content "Sisa Soldati"@en
+  ] ;
+  crm:P107i_is_current_or_former_member_of ex:Malditas_Ternura .
+
+ex:AnonymousObserver a crm:E21_Person ;
+    crm:P1_is_identified_by [ a crm:E41_Appellation ; rdf:value "Observer" ] .
+
+# Colors
+ex:BlueColor a crm:E55_Type ;
+    crm:P2_has_type aat:300129361 ;
+    crm:P1_is_identified_by [ a crm:E33_Linguistic_Appellation ; crm:P190_has_symbolic_content "Blue"@en ] .
+
+ex:PinkColor a crm:E55_Type ;
+    crm:P2_has_type aat:300126047 ;
+    crm:P1_is_identified_by [ a crm:E33_Linguistic_Appellation ; crm:P190_has_symbolic_content "Pink"@en ] .
+
+ex:BrownColor a crm:E55_Type ;
+    crm:P2_has_type aat:300127490 ;
+    crm:P1_is_identified_by [ a crm:E33_Linguistic_Appellation ; crm:P190_has_symbolic_content "Brown"@en ] .
+
+ex:GreenColor a crm:E55_Type ;
+    crm:P2_has_type aat:300128443 ;
+    crm:P1_is_identified_by [ a crm:E33_Linguistic_Appellation ; crm:P190_has_symbolic_content "Green"@en ] .
+
+# Conceptual objects
+ex:Waldlandschaft_DenisVanAlsloot a crm:E28_Conceptual_Object ;
+    rdfs:label "Waldlandschaft mit einer vornehmen Jagdgesellschaft"@de ;
+    skos:note "Painting by the Flemish master Denis van Alsloot, depicting a forest landscape with an elegant hunting party."@en ;
+    crm:P102_has_title [
+        a crm:E35_Title ;
+        crm:P190_has_symbolic_content "Waldlandschaft mit einer vornehmen Jagdgesellschaft"@de ;
+        crm:P2_has_type aat:300417209  # official title
+    ] .
+
+ex:Reimagining a crm:E28_Conceptual_Object ;
+    rdfs:label "Reimagining"@en ;
+    skos:note "The act of interpreting existing subjects or themes in a new and imaginative way."@en .
+
+ex:ClassicalArt a crm:E28_Conceptual_Object ;
+    rdfs:label "Classical Art"@en ;
+    skos:note "Art inspired by the styles and techniques of ancient Greek and Roman traditions."@en .
+
+ex:ModernArt a crm:E28_Conceptual_Object ;
+    rdfs:label "Modern Art"@en ;
+    skos:note "Artistic works produced during the late 19th and 20th centuries, characterized by a departure from traditional styles."@en .
+
+ex:Tribute a crm:E28_Conceptual_Object ;
+    rdfs:label "Tribute"@en ;
+    skos:note "An artistic work created as an homage or dedication to a person, place, or idea."@en .
+
+ex:Forest a crm:E28_Conceptual_Object ;
+    rdfs:label "Forest"@en ;
+    skos:note "A large area dominated by trees and undergrowth, often representing nature in art."@en .
+
+ex:Monastery a crm:E28_Conceptual_Object ;
+    rdfs:label "Monastery"@en ;
+    skos:note "A building or complex where a community of monks or nuns live and work."@en .
+
+ex:Graz a crm:E28_Conceptual_Object ;
+    rdfs:label "Graz"@en ;
+    skos:note "The capital city of Styria, Austria."@en .
+
+ex:Symmetry a crm:E28_Conceptual_Object ;
+    rdfs:label "Symmetry"@en ;
+    skos:note "A balanced and proportionate similarity between two halves of an object or artwork."@en .
+
+
+#AAT declarations
+aat:300033644 a crm:E55_Type ; rdfs:label "Mural"@en .
+aat:300444972 a crm:E55_Type ; rdfs:label "Publicly Accessible"@en .
+aat:300417209 a crm:E55_Type ; rdfs:label "Official Title"@en .
+aat:300055647 a crm:E55_Type ; rdfs:label "Width"@en .
+aat:300055644 a crm:E55_Type ; rdfs:label "Height"@en .
+aat:300379099 a crm:E55_Type ; rdfs:label "Metre"@en .
+aat:300248231 a crm:E55_Type ; rdfs:label "Visual Depiction"@en .
+aat:300054713 a crm:E55_Type ; rdfs:label "Production Event"@en .
+aat:300015058 a crm:E57_Material ; rdfs:label "Acrylic Paint"@en .
+aat:300182574 a crm:E55_Type ; rdfs:label "Acrylic Painting"@en .
+aat:300182574 a crm:E55_Type ; rdfs:label "Painting Technique"@en .
+aat:300257037 a crm:E55_Type ; rdfs:label "Colour"@en .
+aat:300129361 a crm:E55_Type ; rdfs:label "Blue"@en .
+aat:300126047 a crm:E55_Type ; rdfs:label "Pink"@en .
+aat:300127490 a crm:E55_Type ; rdfs:label "Brown"@en .
+aat:300128443 a crm:E55_Type ; rdfs:label "Green"@en .
+aat:300404630 a crm:E55_Type ; rdfs:label "URL"@en .
